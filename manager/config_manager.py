@@ -10,7 +10,7 @@ class ConfigManager:
         try:
             self.__conn.row_factory = Row
             cursor = self.__conn.cursor()
-            return cursor.executescript(sentence_sql)
+            return cursor.execute(sentence_sql)
         except Exception as e:
             print(f"{e} -> ConfigManager.execute_sentence")
 
@@ -20,11 +20,13 @@ class ConfigManager:
         except Exception as e:
             print(f"{e} -> Manager.commit")
 
-    def create_tables(self) -> None:
+    def create_tables(self) -> bool:
         try:
+            cursor = self.__conn.cursor()
             with open("manager/script.sql", "r") as script:
-                self.execute_sentence(script.read())
+                cursor.executescript(script.read())
             self.commit()
             print(f"Tables created!")
+            return True
         except Exception as e:
             print(f"Error {e} -> ConfigManager.create_tables")
