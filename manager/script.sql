@@ -20,7 +20,7 @@ FOREIGN KEY(contact_id) REFERENCES Contact(id)
 CREATE TABLE TelephoneNumber(
 id INTEGER NOT NULL,
 contact_id INTEGER NOT NULL,
-telephone_number VARCHAR(32) NOT NULL,
+telephone_number VARCHAR(32) UNIQUE NOT NULL,
 PRIMARY KEY(id autoincrement),
 FOREIGN KEY(contact_id) REFERENCES Contact(id)
 );

@@ -9,7 +9,7 @@ class InsertRecords(ConfigManager):
     def insert_contact(self, contact: Contact) -> bool:
         try:
             sentence: str = (
-                f"INSERT INTO Contact (firstname, lastname) VALUES {contact.getvalues()}"
+                f"INSERT INTO Contact (firstname, lastname) VALUES {contact.get_names()}"
             )
             self.execute_sentence(sentence)
             self.commit()
@@ -20,7 +20,7 @@ class InsertRecords(ConfigManager):
     def insert_address(self, address: Address) -> bool:
         try:
             sentence: str = (
-                f"INSERT INTO Address (contact_id, address) VALUES {address.getvalues()}"
+                f"INSERT INTO Address (contact_id, address) VALUES {address.get()}"
             )
             self.execute_sentence(sentence)
             self.commit()
@@ -31,7 +31,7 @@ class InsertRecords(ConfigManager):
     def insert_telephone(self, telephone: Telephone) -> bool:
         try:
             sentence: str = (
-                f"INSERT INTO TelephoneNumber (contact_id, telephone_number) VALUES {telephone.getvalues()}"
+                f"INSERT INTO TelephoneNumber (contact_id, telephone_number) VALUES {telephone.get()}"
             )
             self.execute_sentence(sentence)
             self.commit()

@@ -1,14 +1,22 @@
-from .config_schema import Config_Schema
-
-
-class Telephone(Config_Schema):
+class Telephone:
     def __init__(self, args: dict):
-        super().__init__(args)
-        self.__contact_id: int = args["contact_id"]
-        self.__telephone_number: str = args["telephone_number"]
+        self.__contact_id: str = args["contact_id"]
+        self.__telephones: str = args["telephone"]
 
-    def set_telephone(self, telephone_number: str):
-        self.__telephone_number = telephone_number
-        keys = ["contact_id", "telephone_number"]
-        values = [self.__contact_id, self.__telephone_number]
-        self.setvalues(dict(zip(keys, values)))
+    def get_id(self) -> int:
+        return self.__contact_id
+
+    def get_telephones(self) -> list:
+        return self.__telephones
+
+    def get(self) -> tuple:
+        return (self.__contact_id, self.__telephones)
+
+    def show(self) -> dict:
+        return {"contac_id": self.__contact_id, "telephone": self.__telephones}
+
+    def set_id(self, id: int) -> None:
+        self.__contact_id = id
+
+    def set_telephone(self, telephone: str) -> None:
+        self.__telephones = telephone
